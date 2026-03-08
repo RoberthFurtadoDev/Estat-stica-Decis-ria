@@ -178,12 +178,18 @@ st.markdown(f"""
 # ─── FUNÇÕES AUXILIARES ───────────────────────────────────────────────────────
 
 def kpi_card(label: str, value: str, delta: str = "", color: str = "gold") -> str:
-    delta_html = f'<div class="kpi-delta kpi-{color}">{delta}</div>' if delta else ""
-    return f"""<div class="kpi-card">
-        <div class="kpi-label">{label}</div>
-        <div class="kpi-value">{value}</div>
-        {delta_html}
-    </div>"""
+    delta_html = (
+        f'<div class="kpi-delta kpi-{color}">{delta}</div>'
+        if delta
+        else '<div class="kpi-delta" style="min-height:18px;">&nbsp;</div>'
+    )
+    return (
+        f'<div class="kpi-card">'
+        f'<div class="kpi-label">{label}</div>'
+        f'<div class="kpi-value">{value}</div>'
+        f'{delta_html}'
+        f'</div>'
+    )
 
 
 def fmt_brl(val: float) -> str:
